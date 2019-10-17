@@ -15,6 +15,7 @@ steps:
     SonarQube: 'SonarCloud'
     scannerMode: 'CLI'
     configMode: 'manual'
+    cliOrganization: 'eldarrin_github'
     cliProjectKey: 'Eldarrin_nodejsdock'
     cliProjectName: 'nodejsdock'
     cliSources: '.'
