@@ -10,6 +10,24 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'SonarCloud'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'Eldarrin_nodejsdock'
+    cliProjectName: 'nodejsdock'
+    cliSources: '.'
+    extraProperties: |
+      # Additional properties that will be passed to the scanner, 
+      # Put one key=value per line, example:
+      sonar.organization=eldarrin-github
+    
+- task: SonarQubeAnalyze@4
+
+- task: SonarQubePublish@4
+  inputs:
+    pollingTimeoutSec: '300'
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
