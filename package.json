@@ -6,9 +6,13 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "build": "npm build"
+    "build": "npm build",
+    "sonar": "node sonar-project.js"
   },
   "dependencies": {
     "express": "^4.16.1"
+  },
+  "devDependencies": {
+    "sonarqube-scanner": "^2.5.0"
   }
 }
