@@ -10,9 +10,11 @@
     "sonar": "node sonar-project.js"
   },
   "dependencies": {
-    "express": "^4.16.1"
+    "express": "^4.16.1",
+    "save-dev": "0.0.1-security"
   },
   "devDependencies": {
-    "sonarqube-scanner": "^2.5.0"
+    "sonarqube-scanner": "^2.5.0",
+    "mocha": "6.2.1"
   }
 }
