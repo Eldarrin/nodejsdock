@@ -11,11 +11,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- task: VSTest@2
-  inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: 'test\*'
-    searchFolder: '$(System.DefaultWorkingDirectory)'
+
     
 - task: SonarQubePrepare@4
   inputs:
