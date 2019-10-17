@@ -24,6 +24,10 @@ steps:
       sonar.organization=eldarrin-github
     
 - task: SonarQubeAnalyze@4
+
+- task: SonarQubePublish@4
+  inputs:
+    pollingTimeoutSec: '300'
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
