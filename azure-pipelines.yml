@@ -21,7 +21,7 @@ steps:
     extraProperties: |
       # Additional properties that will be passed to the scanner, 
       # Put one key=value per line, example:
-      sonar.organization=eldarrin_github
+      sonar.organization=eldarrin-github
     
 - task: SonarQubeAnalyze@4
 - task: NodeTool@0
