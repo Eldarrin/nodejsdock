@@ -10,7 +10,16 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-
+- task: SonarQubePrepare@4
+  inputs:
+    SonarQube: 'SonarCloud'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'eldarrin-github'
+    cliProjectName: 'nodejsdock'
+    cliSources: '.'
+    
+- task: SonarQubeAnalyze@4
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
@@ -19,7 +28,6 @@ steps:
 - script: |
     npm install
     npm run build
-    npm run sonar
   displayName: 'npm install and build'
 
 - task: Docker@2
