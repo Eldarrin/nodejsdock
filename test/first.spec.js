@@ -1,6 +1,6 @@
 let assert = require('assert');
 describe('Basic Mocha Test', () => {
-  it('should succedd', () => {
+  it('should succeed', () => {
     assert.equal(2, 2);
   });
 });
