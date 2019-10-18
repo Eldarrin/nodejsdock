@@ -30,8 +30,8 @@ stages:
 - stage: Check
   displayName: Check Stage
   jobs:
-    - job: Build
-      displayName: Build
+    - job: Check
+      displayName: Check
       pool:
         vmImage: $(vmImageName)
       steps:
@@ -67,6 +67,7 @@ stages:
 
 - stage: Build
   displayName: Build Stage
+  dependsOn: Check
   jobs:
     - job: Build
       displayName: Build
