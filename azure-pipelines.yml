@@ -19,7 +19,7 @@ variables:
   dockerRegistryServiceConnection: '591568c9-fdc7-46e6-a1f2-0533e1ac1686'
   imageRepository: 'deepsea'
   containerRegistry: 'zulucontainerregistry.azurecr.io'
-  dockerfilePath: '**/Dockerfile'
+  dockerfilePath: 'Dockerfile'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'zulucontainerregistry6327d626-auth'
 
