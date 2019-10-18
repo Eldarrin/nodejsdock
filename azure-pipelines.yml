@@ -35,40 +35,40 @@ stages:
       pool:
         vmImage: $(vmImageName)
       steps:
-    - task: SonarQubePrepare@4
-      inputs:
-        SonarQube: 'SonarCloud'
-        scannerMode: 'CLI'
-        configMode: 'manual'
-        cliProjectKey: 'Eldarrin_nodejsdock'
-        cliProjectName: 'nodejsdock'
-        cliSources: '.'
-        extraProperties: |
-          # Additional properties that will be passed to the scanner,
-          # Put one key=value per line, example:
-          sonar.organization=eldarrin-github
+      - task: SonarQubePrepare@4
+        inputs:
+          SonarQube: 'SonarCloud'
+          scannerMode: 'CLI'
+          configMode: 'manual'
+          cliProjectKey: 'Eldarrin_nodejsdock'
+          cliProjectName: 'nodejsdock'
+          cliSources: '.'
+          extraProperties: |
+            # Additional properties that will be passed to the scanner,
+            # Put one key=value per line, example:
+            sonar.organization=eldarrin-github
 
-    - task: SonarQubeAnalyze@4
+      - task: SonarQubeAnalyze@4
 
-    - task: SonarQubePublish@4
-      inputs:
-        pollingTimeoutSec: '300'
-    - task: NodeTool@0
-      inputs:
-        versionSpec: '10.x'
-      displayName: 'Install Node.js'
+      - task: SonarQubePublish@4
+        inputs:
+          pollingTimeoutSec: '300'
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '10.x'
+        displayName: 'Install Node.js'
 
-    - script: |
-        npm install
-        npm test
-        npm run-script build
-      displayName: 'npm install and build'
+      - script: |
+          npm install
+          npm test
+          npm run-script build
+        displayName: 'npm install and build'
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'drop'
-        publishLocation: 'Container'
+      - task: PublishBuildArtifacts@1
+        inputs:
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: 'drop'
+          publishLocation: 'Container'
 
 - stage: Deploy
   displayName: Deploy stage
