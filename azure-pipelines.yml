@@ -71,16 +71,6 @@ stages:
           ArtifactName: 'drop'
           publishLocation: 'Container'
 
-- stage: Test
-  displayName: Test stage
-  jobs:
-    - job: Test
-      displayName: Test
-      steps:
-      - script: |
-          npm test
-        displayName: Test
-
 - stage: Deploy
   displayName: Deploy stage
   dependsOn: Build
