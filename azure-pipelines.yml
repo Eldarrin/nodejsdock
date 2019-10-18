@@ -48,7 +48,3 @@ steps:
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
-- task: KubernetesManifest@0
-  inputs:
-    action: 'deploy'
-    kubernetesServiceConnection: 'myapp-default'
