@@ -53,6 +53,7 @@ stages:
       - task: SonarQubePublish@4
         inputs:
           pollingTimeoutSec: '300'
+
       - task: NodeTool@0
         inputs:
           versionSpec: '10.x'
@@ -69,6 +70,14 @@ stages:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
           ArtifactName: 'drop'
           publishLocation: 'Container'
+
+- stage: Test
+  displayName: Test stage
+  jobs:
+    - job: Test
+      displayName: Test
+      script: |
+        npm test
 
 - stage: Deploy
   displayName: Deploy stage
