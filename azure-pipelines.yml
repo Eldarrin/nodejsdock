@@ -76,8 +76,9 @@ stages:
   jobs:
     - job: Test
       displayName: Test
-      script: |
-        npm test
+      - script: |
+          npm test
+        displayName: Test
 
 - stage: Deploy
   displayName: Deploy stage
