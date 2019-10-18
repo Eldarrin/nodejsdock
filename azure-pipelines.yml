@@ -76,6 +76,7 @@ stages:
   jobs:
     - job: Test
       displayName: Test
+      steps:
       - script: |
           npm test
         displayName: Test
