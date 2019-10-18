@@ -27,10 +27,48 @@ variables:
   vmImageName: 'ubuntu-latest'
 
 stages:
-- stage: Build
-  displayName: Build stage
+- stage: Check
+  displayName: Check Stage
   jobs:
-    - job: Build1
+    - job: Build
+      displayName: Build
+      pool:
+        vmImage: $(vmImageName)
+      steps:
+        - task: SonarQubePrepare@4
+          inputs:
+            SonarQube: 'SonarCloud'
+            scannerMode: 'CLI'
+            configMode: 'manual'
+            cliProjectKey: 'Eldarrin_nodejsdock'
+            cliProjectName: 'nodejsdock'
+            cliSources: '.'
+            extraProperties: |
+              # Additional properties that will be passed to the scanner,
+              # Put one key=value per line, example:
+              sonar.organization=eldarrin-github
+
+        - task: SonarQubeAnalyze@4
+
+        - task: SonarQubePublish@4
+          inputs:
+            pollingTimeoutSec: '300'
+
+        - task: NodeTool@0
+          inputs:
+            versionSpec: '10.x'
+          displayName: 'Install Node.js'
+
+        - script: |
+            npm install
+            npm test
+            npm run-script build
+          displayName: 'npm install and build'
+
+- stage: Build
+  displayName: Build Stage
+  jobs:
+    - job: Build
       displayName: Build
       pool:
         vmImage: $(vmImageName)
@@ -48,43 +86,8 @@ stages:
         - upload: manifests
           artifact: manifests
 
-    - job: Build2
-      displayName: Build
-      pool:
-        vmImage: $(vmImageName)
-      steps:
-      - task: SonarQubePrepare@4
-        inputs:
-          SonarQube: 'SonarCloud'
-          scannerMode: 'CLI'
-          configMode: 'manual'
-          cliProjectKey: 'Eldarrin_nodejsdock'
-          cliProjectName: 'nodejsdock'
-          cliSources: '.'
-          extraProperties: |
-            # Additional properties that will be passed to the scanner,
-            # Put one key=value per line, example:
-            sonar.organization=eldarrin-github
-
-      - task: SonarQubeAnalyze@4
-
-      - task: SonarQubePublish@4
-        inputs:
-          pollingTimeoutSec: '300'
-
-      - task: NodeTool@0
-        inputs:
-          versionSpec: '10.x'
-        displayName: 'Install Node.js'
-
-      - script: |
-          npm install
-          npm test
-          npm run-script build
-        displayName: 'npm install and build'
-
 - stage: Deploy
-  displayName: Deploy stage
+  displayName: Deploy Stage
   dependsOn: Build
   jobs:
     - deployment: Deploy
