@@ -86,7 +86,7 @@ stages:
 
         - upload: manifests
           artifact: manifests
-
+# release for octopus?
 - stage: Deploy
   displayName: Deploy Stage
   dependsOn: Build
