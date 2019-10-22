@@ -86,6 +86,7 @@ stages:
 
         - upload: manifests
           artifact: manifests
+
         - task: UniversalPackages@0
           inputs:
             command: 'download'
