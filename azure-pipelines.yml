@@ -101,8 +101,8 @@ stages:
             script: |
               sudo pwd
               sudo ls
-              sudo ls $(System.DefaultWorkingDirectory}
-              sudo mv $(System.DefaultWorkingDirectory}/twistcli /usr/bin/twistcli
+              sudo ls ${System.DefaultWorkingDirectory}
+              sudo mv ${System.DefaultWorkingDirectory}/twistcli /usr/bin/twistcli
               sudo chmod +x /usr/bin/twistcli
 
         - task: twistcli-scan@1
