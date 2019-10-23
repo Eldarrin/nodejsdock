@@ -86,7 +86,15 @@ stages:
 
         - upload: manifests
           artifact: manifests
-
+        
+        - task: twistcli-rasp@1
+          inputs:
+            twistlockService: 'twistlock_cli'
+            appID: 'nodejsdock'
+            consoleHost: 'https://86.155.115.214:8083'
+            dataFolder: '/twistlock'
+            dockerfile: '$(dockerfilePath)'
+            
         - task: UniversalPackages@0
           inputs:
             command: 'download'
