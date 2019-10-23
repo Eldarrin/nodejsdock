@@ -102,7 +102,15 @@ stages:
               sudo mv $(System.DefaultWorkingDirectory)/C:/twistlock_19_07_363/linux/twistcli /usr/bin/twistcli
               sudo chmod +x /usr/bin/twistcli
 
-
+        - task: twistcli-scan@1
+          inputs:
+            scanType: 'images'
+            twistlockService: 'twistlock_cli'
+            vulnerabilityThreshold: 'high'
+            onlyFixed: false
+            gracePeriod: '0'
+            complianceThreshold: 'high'
+            artifact: '$(imageRepository)'
 
 - stage: Deploy
   displayName: Deploy Stage
