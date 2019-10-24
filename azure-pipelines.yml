@@ -106,9 +106,13 @@ stages:
             dataFolder: '/twistlock'
             dockerfile: '$(dockerfilePath)'
 
+        - task: CmdLine@3
+          inputs:
+            script: |
+              sudo ls
+              sudo ls /twistlock
 
-
-        - task: Docker@2
+        - task: Docker@3
           inputs:
             containerRegistry: $(dockerRegistryServiceConnection)
             repository: '$(imageRepository)'
