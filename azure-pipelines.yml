@@ -116,7 +116,7 @@ stages:
           inputs:
             twistlockService: 'twistlock_cli'
             appID: 'nodejsdock'
-            consoleHost: 'https://86.155.115.214:8083'
+            consoleHost: 'https://81.132.253.30:8083'
             dataFolder: '/twistlock'
             dockerfile: '$(dockerfilePath)'
 
