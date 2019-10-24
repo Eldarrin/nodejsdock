@@ -110,7 +110,7 @@ stages:
           inputs:
             script: |
               sudo ls
-              sudo ls /twistlock
+              sudo tar -tf twistlock_defender_rasp.tar.gz
 
         - task: Docker@2
           inputs:
