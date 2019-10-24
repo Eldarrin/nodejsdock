@@ -130,11 +130,3 @@ stages:
 
         - upload: manifests
           artifact: manifests
-
-- stage: Deploy
-  displayName: Deploy Stage
-  dependsOn: Build
-  jobs:
-    - deployment: Deploy
-      displayName: Deploy
-      
