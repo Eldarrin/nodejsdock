@@ -120,7 +120,7 @@ stages:
           artifact: manifests
 
         - task: CmdLine@2
-            inputs:
-              script: |
-                sudo ls
-                sudo docker images
+          inputs:
+            script: |
+              sudo ls
+              sudo docker images
