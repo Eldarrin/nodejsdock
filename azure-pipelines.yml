@@ -139,7 +139,7 @@ stages:
                 "files": [
                   {
                     "pattern": "manifests/*",
-                    "target": "libs-generic-local/files/"
+                    "target": "generic-local/files/"
                   }
                 ]
               }
