@@ -135,7 +135,7 @@ stages:
             command: 'push'
             artifactoryService: 'jFrog'
             targetRepo: 'docker-local'
-            imageName: '$(imageRepository):$(tag)'
+            imageName: '$(imageRepository)/$(tag)'
             collectBuildInfo: true
             buildName: '$(Build.DefinitionName)'
             buildNumber: '$(Build.BuildNumber)'
