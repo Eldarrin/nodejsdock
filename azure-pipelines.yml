@@ -136,7 +136,7 @@ stages:
             command: 'push'
             artifactoryService: 'jFrog'
             targetRepo: 'docker-local'
-            imageName: '$(dockerRegistryServiceConnection)/$(imageRepository):$(tag)'
+            imageName: 'zulucontainerregistry.azurecr.io/$(imageRepository):$(tag)'
             collectBuildInfo: true
             buildName: '$(Build.DefinitionName)'
             buildNumber: '$(Build.BuildNumber)'
