@@ -103,10 +103,10 @@ stages:
           inputs:
             scanType: 'images'
             twistlockService: 'twistlock_cli'
-            vulnerabilityThreshold: 'high'
+            vulnerabilityThreshold: 'critical'
             onlyFixed: false
             gracePeriod: '0'
-            complianceThreshold: 'high'
+            complianceThreshold: 'critical'
             artifact: '$(imageRepository):$(tag)'
 
         - task: Docker@2
