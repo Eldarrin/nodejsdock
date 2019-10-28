@@ -130,21 +130,14 @@ stages:
             artifactoryService: 'jFrog'
             cliInstallationRepo: 'jfrog-cli'
 
-        - task: ArtifactoryGenericUpload@1
+        - task: ArtifactoryDocker@1
           inputs:
+            command: 'push'
             artifactoryService: 'jFrog'
-            specSource: 'taskConfiguration'
-            fileSpec: |
-              {
-                "files": [
-                  {
-                    "pattern": "manifests/*",
-                    "target": "generic-local/files/"
-                  }
-                ]
-              }
+            targetRepo: 'docker-local'
+            imageName: '$(imageRepository):$(tag)'
             collectBuildInfo: true
             buildName: '$(Build.DefinitionName)'
             buildNumber: '$(Build.BuildNumber)'
             includeEnvVars: true
-            failNoOp: true
+        
