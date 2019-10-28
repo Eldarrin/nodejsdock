@@ -96,8 +96,6 @@ stages:
             script: |
               sudo mv $(System.DefaultWorkingDirectory)/C:/twistlock_19_07_363/linux/twistcli /usr/bin/twistcli
               sudo chmod +x /usr/bin/twistcli
-              sudo ls /var/lib/docker/
-              sudo docker images
 
         - task: twistcli-scan@1
           inputs:
@@ -127,8 +125,3 @@ stages:
         - upload: manifests
           artifact: manifests
 
-        - task: CmdLine@2
-          inputs:
-            script: |
-              sudo ls
-              sudo docker images
