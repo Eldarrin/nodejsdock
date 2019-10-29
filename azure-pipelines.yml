@@ -54,17 +54,27 @@ stages:
           inputs:
             pollingTimeoutSec: '300'
 
+        - task: ArtifactoryNpm@1
+          inputs:
+            command: 'install'
+            artifactoryService: 'jFrog'
+            sourceRepo: 'npm'
+            workingFolder: '$(System.DefaultWorkingDirectory)'
+            collectBuildInfo: true
+            threads: '1'
+            buildName: '$(Build.DefinitionName)'
+            buildNumber: '$(Build.BuildNumber)'
+            includeEnvVars: true
+
         - task: NodeTool@0
           inputs:
             versionSpec: '10.x'
           displayName: 'Install Node.js'
 
         - script: |
-            npm config set registry https://ustpoc.jfrog.io/ustpoc/api/npm/npm/
-            npm install
             npm test
             npm run-script build
-          displayName: 'npm install and build'
+          displayName: 'npm test and build'
 
 - stage: Build
   displayName: Build Stage
