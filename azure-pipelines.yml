@@ -32,8 +32,6 @@ stages:
   jobs:
     - job: Check
       displayName: Check
-      pool:
-        vmImage: $(vmImageName)
       steps:
         - task: SonarQubePrepare@4
           inputs:
@@ -55,6 +53,7 @@ stages:
             pollingTimeoutSec: '300'
 
         - task: ArtifactoryNpm@1
+          displayName: Install NPM from Artifactory
           inputs:
             command: 'install'
             artifactoryService: 'jFrog'
@@ -65,11 +64,6 @@ stages:
             buildName: '$(Build.DefinitionName)'
             buildNumber: '$(Build.BuildNumber)'
             includeEnvVars: true
-
-#        - task: NodeTool@0
-#          inputs:
-#            versionSpec: '10.x'
-#          displayName: 'Install Node.js'
 
         - script: |
             npm test
@@ -107,7 +101,6 @@ stages:
             script: |
               sudo mv $(System.DefaultWorkingDirectory)/C:/twistlock_19_07_363/linux/twistcli /usr/bin/twistcli
               sudo chmod +x /usr/bin/twistcli
-              sudo docker images
 
 #        - task: twistcli-scan@1
 #          inputs:
