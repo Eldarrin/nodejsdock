@@ -113,30 +113,30 @@ stages:
 #            Dockerfile: '$(dockerfilePath)'
 #            tags: '$(tag)'
 
-        - task: UniversalPackages@0
-          inputs:
-            command: 'download'
-            downloadDirectory: '$(System.DefaultWorkingDirectory)'
-            feedsToUse: 'internal'
-            vstsFeed: '1b6067da-0716-4122-a207-73565ab42845'
-            vstsFeedPackage: 'f864f7d9-3fd7-4789-869e-1258818e3530'
-            vstsPackageVersion: '19.7.363'
+#        - task: UniversalPackages@0
+#          inputs:
+#            command: 'download'
+#            downloadDirectory: '$(System.DefaultWorkingDirectory)'
+#            feedsToUse: 'internal'
+#            vstsFeed: '1b6067da-0716-4122-a207-73565ab42845'
+#            vstsFeedPackage: 'f864f7d9-3fd7-4789-869e-1258818e3530'
+#            vstsPackageVersion: '19.7.363'
 
-        - task: CmdLine@2
-          inputs:
-            script: |
-              sudo mv $(System.DefaultWorkingDirectory)/C:/twistlock_19_07_363/linux/twistcli /usr/bin/twistcli
-              sudo chmod +x /usr/bin/twistcli
+#        - task: CmdLine@2
+#          inputs:
+#            script: |
+#              sudo mv $(System.DefaultWorkingDirectory)/C:/twistlock_19_07_363/linux/twistcli /usr/bin/twistcli
+#              sudo chmod +x /usr/bin/twistcli
 
-        - task: twistcli-scan@1
-          inputs:
-            scanType: 'images'
-            twistlockService: 'twistlock_cli'
-            vulnerabilityThreshold: 'critical'
-            onlyFixed: false
-            gracePeriod: '0'
-            complianceThreshold: 'critical'
-            artifact: '$(imageRepository):$(tag)'
+#        - task: twistcli-scan@1
+#          inputs:
+#            scanType: 'images'
+#            twistlockService: 'twistlock_cli'
+#            vulnerabilityThreshold: 'critical'
+#            onlyFixed: false
+#            gracePeriod: '0'
+#            complianceThreshold: 'critical'
+#            artifact: '$(imageRepository):$(tag)'
 
 #        - task: Docker@2
 #          inputs:
