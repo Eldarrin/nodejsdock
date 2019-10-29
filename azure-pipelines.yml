@@ -79,13 +79,10 @@ stages:
       pool:
         vmImage: $(vmImageName)
       steps:
-        - task: Docker@2
+        - task: ArtifactoryToolsInstaller@1
           inputs:
-            containerRegistry: $(dockerRegistryServiceConnection)
-            repository: $(imageRepository)
-            command: 'build'
-            Dockerfile: '$(dockerfilePath)'
-            tags: '$(tag)'
+            artifactoryService: 'jFrog'
+            cliInstallationRepo: 'jfrog-cli'   
 
         - task: UniversalPackages@0
           inputs:
@@ -101,6 +98,25 @@ stages:
             script: |
               sudo mv $(System.DefaultWorkingDirectory)/C:/twistlock_19_07_363/linux/twistcli /usr/bin/twistcli
               sudo chmod +x /usr/bin/twistcli
+
+        - task: ArtifactoryDocker@1
+          inputs:
+            command: 'pull'
+            artifactoryService: 'jFrog'
+            sourceRepo: 'docker'
+            imageName: '$(vmImageName)'
+            collectBuildInfo: true
+            buildName: '$(Build.DefinitionName)'
+            buildNumber: '$(Build.BuildNumber)'
+            includeEnvVars: true
+
+        - task: Docker@2
+          inputs:
+            containerRegistry: $(dockerRegistryServiceConnection)
+            repository: $(imageRepository)
+            command: 'build'
+            Dockerfile: '$(dockerfilePath)'
+            tags: '$(tag)'
 
 #        - task: twistcli-scan@1
 #          inputs:
@@ -129,11 +145,6 @@ stages:
 
         - upload: manifests
           artifact: manifests
-
-        - task: ArtifactoryToolsInstaller@1
-          inputs:
-            artifactoryService: 'jFrog'
-            cliInstallationRepo: 'jfrog-cli'
 
 #        - task: ArtifactoryDocker@1
 #          inputs:
