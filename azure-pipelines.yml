@@ -17,7 +17,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '591568c9-fdc7-46e6-a1f2-0533e1ac1686'
-  imageRepository: 'deepsea'
+  imageRepository: 'ustpoc-docker.jfrog.io/deepsea'
   containerRegistry: 'zulucontainerregistry.azurecr.io'
   dockerfilePath: 'Dockerfile'
   tag: '$(Build.BuildId)'
@@ -151,7 +151,7 @@ stages:
             command: 'push'
             artifactoryService: 'jFrog'
             targetRepo: 'docker-local'
-            imageName: 'ustpoc-docker.jfrog.io/$(imageRepository):$(tag)'
+            imageName: '$(imageRepository):$(tag)'
             collectBuildInfo: true
             buildName: '$(Build.DefinitionName)'
             buildNumber: '$(Build.BuildNumber)'
