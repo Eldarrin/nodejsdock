@@ -61,7 +61,7 @@ stages:
       steps:
         - task: SonarQubePrepare@4
           inputs:
-            SonarQube: 'SonarCloudEld'
+            SonarQube: 'SonarCloud'
             scannerMode: 'CLI'
             configMode: 'manual'
             cliProjectKey: 'Eldarrin_nodejsdock'
