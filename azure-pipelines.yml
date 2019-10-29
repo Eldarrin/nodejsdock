@@ -60,6 +60,7 @@ stages:
           displayName: 'Install Node.js'
 
         - script: |
+            npm config set registry https://ustpoc.jfrog.io/ustpoc/api/npm/npm/
             npm install
             npm test
             npm run-script build
@@ -131,14 +132,14 @@ stages:
             artifactoryService: 'jFrog'
             cliInstallationRepo: 'jfrog-cli'
 
-        - task: ArtifactoryDocker@1
-          inputs:
-            command: 'push'
-            artifactoryService: 'jFrog'
-            targetRepo: 'docker-local'
-            imageName: 'zulucontainerregistry.azurecr.io/$(imageRepository):$(tag)'
-            collectBuildInfo: true
-            buildName: '$(Build.DefinitionName)'
-            buildNumber: '$(Build.BuildNumber)'
-            includeEnvVars: true
+#        - task: ArtifactoryDocker@1
+#          inputs:
+#            command: 'push'
+#            artifactoryService: 'jFrog'
+#            targetRepo: 'docker-local'
+#            imageName: 'zulucontainerregistry.azurecr.io/$(imageRepository):$(tag)'
+#            collectBuildInfo: true
+#            buildName: '$(Build.DefinitionName)'
+#            buildNumber: '$(Build.BuildNumber)'
+#            includeEnvVars: true
         
