@@ -146,14 +146,20 @@ stages:
         - upload: manifests
           artifact: manifests
 
-        - task: ArtifactoryDocker@1
+        - task: CmdLine@2
           inputs:
-            command: 'push'
-            artifactoryService: 'jFrog'
-            targetRepo: 'docker-local'
-            imageName: '$(imageRepository):$(tag)'
-            collectBuildInfo: true
-            buildName: '$(Build.DefinitionName)'
-            buildNumber: '$(Build.BuildNumber)'
-            includeEnvVars: true
+            script: |
+              sudo ls
+              sudo docker images
+
+#        - task: ArtifactoryDocker@1
+#          inputs:
+#            command: 'push'
+#            artifactoryService: 'jFrog'
+#            targetRepo: 'docker-local'
+#            imageName: '$(imageRepository):$(tag)'
+#            collectBuildInfo: true
+#            buildName: '$(Build.DefinitionName)'
+#            buildNumber: '$(Build.BuildNumber)'
+#            includeEnvVars: true
         
