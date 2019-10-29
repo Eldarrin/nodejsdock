@@ -104,7 +104,7 @@ stages:
             command: 'pull'
             artifactoryService: 'jFrog'
             sourceRepo: 'docker'
-            imageName: 'library/$(vmImageName)'
+            imageName: 'ustpoc.jfrog.io/ustpoc/$(vmImageName)'
             collectBuildInfo: true
             buildName: '$(Build.DefinitionName)'
             buildNumber: '$(Build.BuildNumber)'
