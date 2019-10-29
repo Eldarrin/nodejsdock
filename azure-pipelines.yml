@@ -126,15 +126,15 @@ stages:
             Dockerfile: '$(dockerfilePath)'
             tags: '$(tag)'
 
-#        - task: twistcli-scan@1
-#          inputs:
-#            scanType: 'images'
-#            twistlockService: 'twistlock_cli'
-#            vulnerabilityThreshold: 'critical'
-#            onlyFixed: false
-#            gracePeriod: '0'
-#            complianceThreshold: 'critical'
-#            artifact: '$(imageRepository):$(tag)'
+        - task: twistcli-scan@1
+          inputs:
+            scanType: 'images'
+            twistlockService: 'twistlock_cli'
+            vulnerabilityThreshold: 'critical'
+            onlyFixed: false
+            gracePeriod: '0'
+            complianceThreshold: 'critical'
+            artifact: '$(imageRepository):$(tag)'
 
 #        - task: Docker@2
 #          inputs:
