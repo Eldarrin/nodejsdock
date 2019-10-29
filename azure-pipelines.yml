@@ -99,16 +99,16 @@ stages:
               sudo mv $(System.DefaultWorkingDirectory)/C:/twistlock_19_07_363/linux/twistcli /usr/bin/twistcli
               sudo chmod +x /usr/bin/twistcli
 
-        - task: ArtifactoryDocker@1
-          inputs:
-            command: 'pull'
-            artifactoryService: 'jFrog'
-            sourceRepo: 'docker'
-            imageName: 'ustpoc-docker.jfrog.io/centos'
-            collectBuildInfo: true
-            buildName: '$(Build.DefinitionName)'
-            buildNumber: '$(Build.BuildNumber)'
-            includeEnvVars: true
+#        - task: ArtifactoryDocker@1
+#          inputs:
+#            command: 'pull'
+#            artifactoryService: 'jFrog'
+#            sourceRepo: 'docker'
+#            imageName: 'ustpoc-docker.jfrog.io/centos'
+#            collectBuildInfo: true
+#            buildName: '$(Build.DefinitionName)'
+#            buildNumber: '$(Build.BuildNumber)'
+#            includeEnvVars: true
 
         - task: Docker@2
           inputs:
@@ -146,14 +146,14 @@ stages:
         - upload: manifests
           artifact: manifests
 
-#        - task: ArtifactoryDocker@1
-#          inputs:
-#            command: 'push'
-#            artifactoryService: 'jFrog'
-#            targetRepo: 'docker-local'
-#            imageName: 'zulucontainerregistry.azurecr.io/$(imageRepository):$(tag)'
-#            collectBuildInfo: true
-#            buildName: '$(Build.DefinitionName)'
-#            buildNumber: '$(Build.BuildNumber)'
-#            includeEnvVars: true
+        - task: ArtifactoryDocker@1
+          inputs:
+            command: 'push'
+            artifactoryService: 'jFrog'
+            targetRepo: 'docker-local'
+            imageName: 'ustpoc-docker.jfrog.io/$(imageRepository):$(tag)'
+            collectBuildInfo: true
+            buildName: '$(Build.DefinitionName)'
+            buildNumber: '$(Build.BuildNumber)'
+            includeEnvVars: true
         
